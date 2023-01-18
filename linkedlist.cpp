@@ -18,20 +18,70 @@ class Node
     }
 };
 
-void displayList(Node* n)
+class SinglyLinkedList
 {
-    while(n != NULL)
+private:
+    Node* head;
+    Node* tail;
+public:
+    SinglyLinkedList()
     {
-        for(int i = 0; i < 5; i++)
-        {
-           cout << n->value;
-           n = n->nextNode; 
-        }
-        cout << endl;
+        this->head = NULL;
+        this->tail = NULL;
     }
-}
 
- //linked list implementation of sparse matrix
+    //add newNode to end of list (after tail)
+    void append(Node* newNode)
+    {
+        if(this->head == NULL)
+        {
+            this->head = newNode;
+            this->tail = newNode;
+        }
+        else
+        {
+            tail->nextNode = newNode;
+            this->tail = newNode;
+        }
+    }
+        
+    //add newNode to front of list (before head)
+    void preprend(Node* newNode)
+    {
+        if(this->head == NULL)
+        {
+            this->head = newNode;
+            this->tail = newNode;
+        }
+        else
+        {
+            newNode->nextNode = this->head;
+            this->head = newNode;
+        }
+    }
+
+    void display()
+    {
+        Node* currNode = this->head;
+    
+        if(this->head == NULL)
+        {
+            cout << "list is empty";
+        }
+        while(currNode != NULL)
+        {
+            //i < 5 because 5 = # of values that should be in a row
+            for(int i = 0; i < 5; i++)
+            {
+                cout << currNode->value << " ";
+                currNode = currNode->nextNode;
+            }
+            cout << endl;
+        }
+    }
+};
+
+//linked list implementation of sparse matrix
 int main()
 {
     //allocate memory space
@@ -56,7 +106,7 @@ int main()
     Node* S = NULL;
     Node* T = NULL;
 
-    //assign Node values(row, column, value) to correct memory space
+    //assign Node values(row, column, value) to allocated memory space
     A = new Node(0,0,0);
     B = new Node(0,1,0);
     C = new Node(0,2,3);
@@ -77,109 +127,30 @@ int main()
     R = new Node(3,2,6);
     S = new Node(3,3,0);
     T = new Node(3,4,0);
-
-    //link each node to following node
-    A->nextNode = B;
-    B->nextNode = C;
-    C->nextNode = D;
-    D->nextNode = E;
-    E->nextNode = F;
-    F->nextNode = G;
-    G->nextNode = H;
-    H->nextNode = I;
-    I->nextNode = J;
-    J->nextNode = K;
-    K->nextNode = L;
-    L->nextNode = M;
-    M->nextNode = N;
-    N->nextNode = O;
-    O->nextNode = P;
-    P->nextNode = Q;
-    Q->nextNode = R;
-    R->nextNode = S;
-    S->nextNode = T;
-
-    displayList(A);
-    return 0;
-
-    /*list->append(Node A);
-    list->append(Node B);
-    list->append(Node C); 
-    list->append(Node D); 
-    list->append(Node E);
-    list->append(Node F);
-    list->append(Node G);
-    list->append(Node H);
-    list->append(Node I);
-    list->append(Node J);
-    list->append(Node K);
-    list->append(Node L);
-    list->append(Node M);
-    list->append(Node N);
-    list->append(Node O);
-    list->append(Node P);
-    list->append(Node Q);
-    list->append(Node R);
-    list->append(Node S);
-    list->append(Node T);
-
-    list->display();*/
-}
-
-/*struct SinglyLinkedList
-{
-private:
-    Node* head;
-    Node* tail;
-public:
-    SinglyLinkedList()
-    {
-        this->*head = NULL;
-        this->*tail = NULL;
-    };
-
-    //add newNode to end of list
-    void append(Node newNode)
-    {
-        if(this->*head == NULL)
-        {
-            this->*head = newNode;
-            this->*tail = newNode;
-        }
-        else
-        {
-            tail->nextNode = newNode;
-            this->*tail = newNode;
-        }
-    };
-        
-    //add newNode to front of list
-    void preprend(Node newNode)
-    {
-        if(this->*head == NULL)
-        {
-            this->*head = newNode;
-            this->*tail = newNode;
-        }
-        else
-        {
-            newNode->nextNode = this->*head;
-            this->*head = newNode;
-        }
-    };
-
-    void display()
-    {
-        Node currNode = this->*head;
     
-        if(this->*head == NULL)
-        {
-            cout << "list is empty";
-        }
-        while(currNode != NULL)
-        {
-            cout << currNode->value + " ";
-            currNode = currNode->nextNode;
-        }
-    };
-};*/
+    SinglyLinkedList* list = new SinglyLinkedList();
+
+    list->append(A);
+    list->append(B);
+    list->append(C); 
+    list->append(D); 
+    list->append(E);
+    list->append(F);
+    list->append(G);
+    list->append(H);
+    list->append(I);
+    list->append(J);
+    list->append(K);
+    list->append(L);
+    list->append(M);
+    list->append(N);
+    list->append(O);
+    list->append(P);
+    list->append(Q);
+    list->append(R);
+    list->append(S);
+    list->append(T);
+
+    list->display();
+    return 0;
+}
