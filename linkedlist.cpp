@@ -60,6 +60,7 @@ public:
         }
     }
 
+    //displays row, column, and value for every node and shows how nodes are linked
     void display()
     {
         Node* currNode = this->head;
@@ -70,14 +71,10 @@ public:
         }
         while(currNode != NULL)
         {
-            //i <= 6 because 6 = # of non zero values
-            for(int i = 0; i <= 6; i++)
-            {
-                cout << "row: " << currNode->row << ", ";
-                cout << "column: " << currNode->column << ", ";
-                cout << "value: " << currNode->value << endl;
-                currNode = currNode->nextNode;
-            }
+            cout << "row: " << currNode->row << ", ";
+            cout << "column: " << currNode->column << ", ";
+            cout << "value: " << currNode->value << endl;
+            currNode = currNode->nextNode;
         }
     }
 };
